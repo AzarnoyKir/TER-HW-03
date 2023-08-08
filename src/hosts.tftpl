@@ -1,0 +1,19 @@
+[webservers]
+%{~ for i in webservers ~}
+
+netology-develop-platform-${i["name"]}   ansible_host=${(length(i["network_interface"][0]["nat_ip_address"]) > 0 ? i["network_interface"][0]["nat_ip_address"] : i["network_interface"][0]["ip_address"])} 
+%{~ endfor ~}
+
+
+[databases]
+%{~ for i in databases ~}
+
+netology-develop-platform-${i["name"]}   ansible_host=${(length(i["network_interface"][0]["nat_ip_address"]) > 0 ? i["network_interface"][0]["nat_ip_address"] : i["network_interface"][0]["ip_address"])} 
+%{~ endfor ~}
+
+
+[storage]
+%{~ for i in storage ~}
+
+netology-develop-platform-${i["name"]}   ansible_host=${(length(i["network_interface"][0]["nat_ip_address"]) > 0 ? i["network_interface"][0]["nat_ip_address"] : i["network_interface"][0]["ip_address"])} 
+%{~ endfor ~}

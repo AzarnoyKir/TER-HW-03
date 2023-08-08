@@ -1,0 +1,23 @@
+---
+
+- name: test
+  gather_facts: false
+  hosts: all
+  vars:
+    ansible_user: debian
+  become: yes
+  tasks:
+  
+  - name: Wait for SSH port to become available
+    wait_for:
+      host: "{{ ansible_host }}"
+      port: 22
+      delay: 50
+      timeout: 300
+
+  - name: Install Nginx Web Server on Debian Family
+    apt:
+      name: nginx
+      state: latest   
+      update_cache: yes 
+    
